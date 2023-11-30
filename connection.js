@@ -21,7 +21,11 @@ async function main(){
 }
 async function specificDataBaseConnection(client){
     let databases = await client.db('sample_airbnb')
-    console.log(databases , "Databases:");
+    let collection = databases.collection("listingsAndReviews");
+    let query = await collection.findOne({
+        beds:5
+    })
+    console.log(query , "<======collection:");
 }
 async function listDatabases(client){
     databasesList = await client.db().admin().listDatabases();
